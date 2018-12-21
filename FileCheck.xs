@@ -80,7 +80,15 @@ int _overload_ft_ops() {
   PUSHMARK(SP);
   EXTEND(SP, 2);
   PUSHs(sv_2mortal(newSViv(optype)));
-  PUSHs(arg);
+  /* we just want to do PUSHs(arg) but sometime the stack contains one AV ?? */
+  if ( SvTYPE(arg) == SVt_PVAV ) {
+    if ( AvFILL( arg ) > 0 )
+      croak("Overload::FileCheck XS error: stack is an Array with some values... AvFILL=%d\n", AvFILL(arg) );
+    PUSHs( &PL_sv_undef );
+  } else {
+    PUSHs(arg);
+  }
+
   PUTBACK;
 
   count = call_pv("Overload::FileCheck::_check", G_SCALAR);
@@ -115,7 +123,15 @@ SV* _overload_ft_ops_sv() {
   PUSHMARK(SP);
   EXTEND(SP, 2);
   PUSHs(sv_2mortal(newSViv(optype)));
-  PUSHs(arg);
+  /* we just want to do PUSHs(arg) but sometime the stack contains one AV ?? */
+  if ( SvTYPE(arg) == SVt_PVAV ) {
+    if ( AvFILL( arg ) > 0 )
+      croak("Overload::FileCheck XS error: stack is an Array with some values... AvFILL=%d\n", AvFILL(arg) );
+    PUSHs( &PL_sv_undef );
+  } else {
+    PUSHs(arg);
+  }
+
   PUTBACK;
 
   count = call_pv("Overload::FileCheck::_check", G_SCALAR);
