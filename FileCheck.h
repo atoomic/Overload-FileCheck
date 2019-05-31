@@ -8,7 +8,7 @@
 #include <perl.h>
 
 /* TODO reduce that value and add a macro to define them */
-#define OP_MAX	1024
+#define OP_MAX	MAXO
 
 /* informations for a single overload mock */
 typedef struct {
@@ -18,8 +18,7 @@ typedef struct {
 
 /* this could be an array but for now let's keep it as a struct */
 typedef struct {
-	OPMocked op[OP_MAX]; /* int for now.. could use function later */
-	int offset;
+	OPMocked op[OP_MAX];
 } OverloadFTOps;
 
 /* function prototypes */

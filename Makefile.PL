@@ -7,7 +7,7 @@ use 5.010;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "override/mock perl file check -X: -e, -f, -d, ...",
+  "ABSTRACT" => "override/mock -e demo",
   "AUTHOR" => "Nicolas R <atoomic\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     "Test2::Tools::Explain" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.009",
+  "VERSION" => "0.010",
   "test" => {
     "TESTS" => "t/*.t"
   }
